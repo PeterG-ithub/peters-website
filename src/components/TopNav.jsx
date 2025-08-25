@@ -47,7 +47,7 @@ const [activeTab, setActiveTab] = useState('layout');
               
               {/* Dropdown Menu */}
               {isTemplateMenuOpen && (
-                <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                <div className="absolute top-full left-0 mt-1 w-[600px] bg-white rounded-md shadow-lg border border-gray-200 z-50">
                   {/* Tab Headers */}
                   <div className="flex border-b border-gray-200">
                     <button
@@ -85,7 +85,7 @@ const [activeTab, setActiveTab] = useState('layout');
                             }}
                             className="flex flex-col items-center p-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors duration-200"
                           >
-                            <div className="w-20 h-24 mb-2 bg-gray-200 rounded border border-gray-300 flex items-center justify-center overflow-hidden">
+                            <div className="w-36 h-44 mb-2 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                               {layout.id === 'modern' ? (
                                 <img 
                                   src="/images/layout-modern.png" 
