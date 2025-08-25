@@ -9,11 +9,11 @@ export default function TopNavBar() {
 const [activeTab, setActiveTab] = useState('layout');
 
   const layouts = [
-    { name: 'Modern Portfolio', id: 'modern' },
+    { name: 'Modern', id: 'modern' },
     { name: 'Minimalist', id: 'minimal' },
-    { name: 'Creative', id: 'creative' },
-    { name: 'Developer', id: 'developer' },
-    { name: 'Business', id: 'business' }
+    { name: 'Compact', id: 'compact' },
+    { name: 'layout 4', id: 'four' },
+    { name: 'layout 5', id: 'five' }
   ];
 
   const contentProfiles = [
@@ -29,6 +29,19 @@ const [activeTab, setActiveTab] = useState('layout');
     { name: 'GitHub', Icon: FiGithub, url: 'https://github.com/peter' },
     { name: 'Patreon', Icon: ExternalLink, url: 'https://patreon.com/peter' }
   ];
+
+  const getLayoutImageSrc = (layoutId) => {
+    const imageMap = {
+      'modern': '/images/layout-modern.png',
+      'minimal': '/images/layout-minimalist.png',
+      'compact': '/images/layout-compact.png'
+    };
+    return imageMap[layoutId];
+  };
+
+  const hasPreviewImage = (layoutId) => {
+    return ['modern', 'minimal', 'compact'].includes(layoutId);
+  };
 
   return (
     <nav className="bg-white shadow-md border-b border-gray-200">
@@ -85,10 +98,12 @@ const [activeTab, setActiveTab] = useState('layout');
                             }}
                             className="flex flex-col items-center p-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors duration-200"
                           >
-                            <div className="w-36 h-44 mb-2 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
-                              {layout.id === 'modern' ? (
+                            <div className={`w-36 h-44 mb-2 rounded flex items-center justify-center overflow-hidden ${
+                              hasPreviewImage(layout.id) ? 'bg-transparent' : 'bg-gray-200  border border-gray-300'
+                            }`}>
+                              {hasPreviewImage(layout.id) ? (
                                 <img 
-                                  src="/images/layout-modern.png" 
+                                  src={getLayoutImageSrc(layout.id)} 
                                   alt={`${layout.name} preview`}
                                   className="w-full h-full object-contain"
                                 />
