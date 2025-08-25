@@ -6,8 +6,9 @@ import { LuLayoutTemplate } from 'react-icons/lu';
 
 export default function TopNavBar() {
   const [isTemplateMenuOpen, setIsTemplateMenuOpen] = useState(false);
+const [activeTab, setActiveTab] = useState('layout');
 
-  const templates = [
+  const layouts = [
     { name: 'Modern Portfolio', id: 'modern' },
     { name: 'Minimalist', id: 'minimal' },
     { name: 'Creative', id: 'creative' },
@@ -15,6 +16,12 @@ export default function TopNavBar() {
     { name: 'Business', id: 'business' }
   ];
 
+  const contentProfiles = [
+    { name: 'Generic', id: 'generic' },
+    { name: 'Software Engineer', id: 'software-engineer' },
+    { name: 'Computer Engineer', id: 'computer-engineer' }
+  ];
+  
   const navItems = ['about', 'skills' ,'projects', 'goals'];
 
   const socialLinks = [
@@ -30,7 +37,6 @@ export default function TopNavBar() {
           {/* Left side - Templates and Name */}
           <div className="flex items-center space-x-6">
             {/* Template Menu */}
-            {/* Template Menu */}
             <div className="relative">
               <button
                 onClick={() => setIsTemplateMenuOpen(!isTemplateMenuOpen)}
@@ -41,19 +47,56 @@ export default function TopNavBar() {
               
               {/* Dropdown Menu */}
               {isTemplateMenuOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                  {/* Tab Headers */}
+                  <div className="flex border-b border-gray-200">
+                    <button
+                      onClick={() => setActiveTab('layout')}
+                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                        activeTab === 'layout'
+                          ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      Layout
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('content')}
+                      className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                        activeTab === 'content'
+                          ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      Content
+                    </button>
+                  </div>
+
+                  {/* Tab Content */}
                   <div className="py-1">
-                    {templates.map((template) => (
+                    {activeTab === 'layout' && layouts.map((layout) => (
                       <button
-                        key={template.id}
+                        key={layout.id}
                         onClick={() => {
                           setIsTemplateMenuOpen(false);
-                          // Handle template selection here
-                          console.log(`Selected template: ${template.name}`);
+                          console.log(`Selected layout: ${layout.name}`);
                         }}
                         className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
                       >
-                        {template.name}
+                        {layout.name}
+                      </button>
+                    ))}
+                    
+                    {activeTab === 'content' && contentProfiles.map((profile) => (
+                      <button
+                        key={profile.id}
+                        onClick={() => {
+                          setIsTemplateMenuOpen(false);
+                          console.log(`Selected content: ${profile.name}`);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+                      >
+                        {profile.name}
                       </button>
                     ))}
                   </div>
