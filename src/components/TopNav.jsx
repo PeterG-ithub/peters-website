@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Menu, ExternalLink, ChevronDown } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { FiLinkedin, FiGithub } from "react-icons/fi";
 import { HiMenu } from 'react-icons/hi';
+import { LuLayoutTemplate } from 'react-icons/lu';
 
 export default function TopNavBar() {
   const [isTemplateMenuOpen, setIsTemplateMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function TopNavBar() {
     { name: 'Business', id: 'business' }
   ];
 
-  const navItems = ['about', 'projects', 'skills', 'goals'];
+  const navItems = ['about', 'skills' ,'projects', 'goals'];
 
   const socialLinks = [
     { name: 'LinkedIn', Icon: FiLinkedin, url: 'https://linkedin.com/in/peter' },
@@ -29,14 +30,13 @@ export default function TopNavBar() {
           {/* Left side - Templates and Name */}
           <div className="flex items-center space-x-6">
             {/* Template Menu */}
+            {/* Template Menu */}
             <div className="relative">
               <button
                 onClick={() => setIsTemplateMenuOpen(!isTemplateMenuOpen)}
-                className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
+                className="flex items-center px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
               >
-                <Menu size={20} />
-                <span className="font-medium">Templates</span>
-                <ChevronDown size={16} className={`transform transition-transform ${isTemplateMenuOpen ? 'rotate-180' : ''}`} />
+                <LuLayoutTemplate size={20} />
               </button>
               
               {/* Dropdown Menu */}
