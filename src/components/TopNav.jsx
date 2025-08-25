@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Menu, Github, Linkedin, ExternalLink, ChevronDown } from 'lucide-react';
+import { Menu, ExternalLink, ChevronDown } from 'lucide-react';
+import { FiLinkedin, FiGithub } from "react-icons/fi";
+import { HiMenu } from 'react-icons/hi';
 
 export default function TopNavBar() {
   const [isTemplateMenuOpen, setIsTemplateMenuOpen] = useState(false);
@@ -15,9 +17,9 @@ export default function TopNavBar() {
   const navItems = ['about', 'projects', 'skills', 'goals'];
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/peter-gabradilla/' },
-    { name: 'GitHub', icon: Github, url: 'https://github.com/peter' },
-    { name: 'Patreon', icon: ExternalLink, url: 'https://patreon.com/peter' }
+    { name: 'LinkedIn', Icon: FiLinkedin, url: 'https://linkedin.com/in/peter' },
+    { name: 'GitHub', Icon: FiGithub, url: 'https://github.com/peter' },
+    { name: 'Patreon', Icon: ExternalLink, url: 'https://patreon.com/peter' }
   ];
 
   return (
@@ -79,27 +81,24 @@ export default function TopNavBar() {
 
           {/* Right side - Social Links */}
           <div className="flex items-center space-x-4">
-            {socialLinks.map((social) => {
-              const IconComponent = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
-                  title={social.name}
-                >
-                  <IconComponent size={20} />
-                </a>
-              );
-            })}
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
+                title={social.name}
+              >
+                <social.Icon size={20} />
+              </a>
+            ))}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md">
-              <Menu size={20} />
+              <HiMenu size={20} />
             </button>
           </div>
         </div>
