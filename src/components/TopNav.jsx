@@ -73,30 +73,34 @@ const [activeTab, setActiveTab] = useState('layout');
                   </div>
 
                   {/* Tab Content */}
-                  <div className="py-2">
-                    {activeTab === 'layout' && layouts.map((layout) => (
-                      <button
-                        key={layout.id}
-                        onClick={() => {
-                          setIsTemplateMenuOpen(false);
-                          console.log(`Selected layout: ${layout.name}`);
-                        }}
-                        className="flex flex-col items-center w-full px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
-                      >
-                        <div className="w-16 h-20 mb-2 bg-gray-200 rounded border border-gray-300 flex items-center justify-center overflow-hidden">
-                          {layout.id === 'modern' ? (
-                            <img 
-                              src="/images/layout-modern.png" 
-                              alt={`${layout.name} preview`}
-                              className="w-full h-full object-contain"
-                            />
-                          ) : (
-                            <span className="text-xs text-gray-500">Preview</span>
-                          )}
-                        </div>
-                        <span className="text-xs font-medium text-center">{layout.name}</span>
-                      </button>
-                    ))}
+                  <div className="p-2">
+                    {activeTab === 'layout' && (
+                      <div className="grid grid-cols-2 gap-3">
+                        {layouts.map((layout) => (
+                          <button
+                            key={layout.id}
+                            onClick={() => {
+                              setIsTemplateMenuOpen(false);
+                              console.log(`Selected layout: ${layout.name}`);
+                            }}
+                            className="flex flex-col items-center p-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md transition-colors duration-200"
+                          >
+                            <div className="w-20 h-24 mb-2 bg-gray-200 rounded border border-gray-300 flex items-center justify-center overflow-hidden">
+                              {layout.id === 'modern' ? (
+                                <img 
+                                  src="/images/layout-modern.png" 
+                                  alt={`${layout.name} preview`}
+                                  className="w-full h-full object-contain"
+                                />
+                              ) : (
+                                <span className="text-xs text-gray-500">Preview</span>
+                              )}
+                            </div>
+                            <span className="text-xs font-medium text-center leading-tight">{layout.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     
                     {activeTab === 'content' && contentProfiles.map((profile) => (
                       <button
@@ -105,7 +109,7 @@ const [activeTab, setActiveTab] = useState('layout');
                           setIsTemplateMenuOpen(false);
                           console.log(`Selected content: ${profile.name}`);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200 rounded-md"
                       >
                         {profile.name}
                       </button>
