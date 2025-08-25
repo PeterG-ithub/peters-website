@@ -47,7 +47,7 @@ const [activeTab, setActiveTab] = useState('layout');
               
               {/* Dropdown Menu */}
               {isTemplateMenuOpen && (
-                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 z-50">
                   {/* Tab Headers */}
                   <div className="flex border-b border-gray-200">
                     <button
@@ -73,7 +73,7 @@ const [activeTab, setActiveTab] = useState('layout');
                   </div>
 
                   {/* Tab Content */}
-                  <div className="py-1">
+                  <div className="py-2">
                     {activeTab === 'layout' && layouts.map((layout) => (
                       <button
                         key={layout.id}
@@ -81,9 +81,20 @@ const [activeTab, setActiveTab] = useState('layout');
                           setIsTemplateMenuOpen(false);
                           console.log(`Selected layout: ${layout.name}`);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+                        className="flex flex-col items-center w-full px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
                       >
-                        {layout.name}
+                        <div className="w-16 h-20 mb-2 bg-gray-200 rounded border border-gray-300 flex items-center justify-center overflow-hidden">
+                          {layout.id === 'modern' ? (
+                            <img 
+                              src="/images/layout-modern.png" 
+                              alt={`${layout.name} preview`}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <span className="text-xs text-gray-500">Preview</span>
+                          )}
+                        </div>
+                        <span className="text-xs font-medium text-center">{layout.name}</span>
                       </button>
                     ))}
                     
